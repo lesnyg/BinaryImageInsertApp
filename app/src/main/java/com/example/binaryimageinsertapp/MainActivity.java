@@ -42,8 +42,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         img_binery = findViewById(R.id.img_binery);
-//        BitmapDrawable drawable = (BitmapDrawable) getResources().getDrawable(R.drawable.ad01);
-//        mBitmap = ((BitmapDrawable)drawable).getBitmap();
         mBitmap = BitmapFactory.decodeResource(getApplicationContext().getResources(), R.drawable.ad06);
 
         img_binery.setImageBitmap(mBitmap);
@@ -75,8 +73,6 @@ public class MainActivity extends AppCompatActivity {
             if (isCancelled())
                 return (null);
             query();
-
-
             return null;
         }
 
@@ -93,44 +89,17 @@ public class MainActivity extends AppCompatActivity {
         try {
             Class.forName("net.sourceforge.jtds.jdbc.Driver");
             connection = DriverManager.getConnection("jdbc:jtds:sqlserver://222.122.213.216/mashw08", "mashw08", "msts0850op");
-//            PreparedStatement ps = connection.prepareStatement("INSERT INTO Su_배너이미지(BLOBData) VALUES (convert(VARBINARY(max),'" + imageBytes + "'))");
             PreparedStatement ps = connection.prepareStatement("INSERT INTO Su_배너이미지(BLOBData) VALUES (?)");
-//            ps.setString(1, file.getName());
             byte[] buf = imageBytes;
             ps.setBytes(1, buf);
             ps.executeUpdate();
             ps.close();
             connection.close();
-        }  catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
-        }  catch (ClassNotFoundException e) {
+        } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-
-//        try {
-//
-//            String query = "insert into Su_배너이미지(BLOBData) VALUES (convert(VARBINARY(max),'" + imageBytes + "'))";
-//            Class.forName("net.sourceforge.jtds.jdbc.Driver");
-//            connection = DriverManager.getConnection("jdbc:jtds:sqlserver://222.122.213.216/mashw08", "mashw08", "msts0850op");
-//            Statement statement = connection.createStatement();
-//            ResultSet resultSet = statement.executeQuery("insert into Su_배너이미지(BLOBData) VALUES (convert(VARBINARY(max),'" + imageBytes + "'))");
-//            PreparedStatement pstm=connection.prepareStatement(query);
-//
-//            fis=new FileInputStream(file);
-//            pstm.setBinaryStream(2, (InputStream)fis, (int)file.length());
-//            pstm.executeUpdate();
-//            pstm.close();
-//            fis.close();
-//            connection.close();
-//        } catch (ClassNotFoundException e) {
-//            e.printStackTrace();
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
 
     }
 

@@ -22,6 +22,7 @@ public class Main2Activity extends AppCompatActivity {
     private ImageView img_result;
     private AsyncTask<String, String, String> mTask;
     private Bitmap bitmap;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +32,7 @@ public class Main2Activity extends AppCompatActivity {
         mTask = new MySyncTask().execute();
 
     }
+
     public class MySyncTask extends AsyncTask<String, String, String> {
 
         protected void onPreExecute() {
@@ -66,7 +68,6 @@ public class Main2Activity extends AppCompatActivity {
                 Blob blob = resultSet.getBlob(2);
                 b = blob.getBytes(1, (int) blob.length());
                 bitmap = BitmapFactory.decodeByteArray(b, 0, b.length);
-
 
                 runOnUiThread(new Runnable() {
                     @Override
