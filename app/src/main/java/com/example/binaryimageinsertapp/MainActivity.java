@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         img_binery = findViewById(R.id.img_binery);
-        mBitmap = BitmapFactory.decodeResource(getApplicationContext().getResources(), R.drawable.ad06);
+        mBitmap = BitmapFactory.decodeResource(getApplicationContext().getResources(), R.drawable.ad03);
 
         img_binery.setImageBitmap(mBitmap);
         BitmapToString(mBitmap);

@@ -79,25 +79,31 @@ public class Main2Activity extends AppCompatActivity {
             byte b4[];
             while (resultSet.next()) {
                 Blob blob = resultSet.getBlob(9);
-                b = blob.getBytes(1, (int) blob.length());
-                bitmap = BitmapFactory.decodeByteArray(b, 0, b.length);
+                if (blob != null) {
+                    b = blob.getBytes(1, (int) blob.length());
+                    bitmap = BitmapFactory.decodeByteArray(b, 0, b.length);
+                }
 
                 Blob blob2 = resultSet.getBlob(13);
-                b2 = blob2.getBytes(1, (int) blob2.length());
-                bitmap2 = BitmapFactory.decodeByteArray(b2, 0, b2.length);
+                if (blob2 != null) {
+                    b2 = blob2.getBytes(1, (int) blob2.length());
+                    bitmap2 = BitmapFactory.decodeByteArray(b2, 0, b2.length);
+                }
 
                 Blob blob3 = resultSet.getBlob(12);
-                b3 = blob3.getBytes(1, (int) blob3.length());
-                bitmap3 = BitmapFactory.decodeByteArray(b3, 0, b3.length);
-
-               
+                if (blob3 != null) {
+                    b3 = blob3.getBytes(1, (int) blob3.length());
+                    bitmap3 = BitmapFactory.decodeByteArray(b3, 0, b3.length);
+                }
 
             }
             ResultSet rs = statement.executeQuery("select TOP 1* from Su_수급자서명정보 order by id DESC");
-            while (rs.next()){
+            while (rs.next()) {
                 Blob blob4 = rs.getBlob(3);
-                b4 = blob4.getBytes(1, (int) blob4.length());
-                bitmap4 = BitmapFactory.decodeByteArray(b4, 0, b4.length);
+                if (blob4 != null) {
+                    b4 = blob4.getBytes(1, (int) blob4.length());
+                    bitmap4 = BitmapFactory.decodeByteArray(b4, 0, b4.length);
+                }
 
             }
             runOnUiThread(new Runnable() {
@@ -107,8 +113,6 @@ public class Main2Activity extends AppCompatActivity {
                     img_result2.setImageBitmap(bitmap2);
                     img_result3.setImageBitmap(bitmap3);
                     img_result4.setImageBitmap(bitmap4);
-
-
                 }
             });
             connection.close();
